@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B2777F4D2861EDD900F8C892 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2777F4C2861EDD900F8C892 /* ContentView.swift */; };
+		B2777F4D2861EDD900F8C892 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2777F4C2861EDD900F8C892 /* BoardView.swift */; };
+		B2777F712861EEE700F8C892 /* SportActivityModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B2777F6F2861EEE700F8C892 /* SportActivityModel.xcdatamodeld */; };
+		B2777F752861EF9E00F8C892 /* BoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2777F742861EF9E00F8C892 /* BoardViewModel.swift */; };
 		B2A63D332861BD1400E89594 /* MySportPerformanceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A63D322861BD1400E89594 /* MySportPerformanceApp.swift */; };
 		B2A63D372861BD1800E89594 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2A63D362861BD1800E89594 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B2777F4C2861EDD900F8C892 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B2777F4C2861EDD900F8C892 /* BoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
+		B2777F702861EEE700F8C892 /* SportActivityModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SportActivityModel.xcdatamodel; sourceTree = "<group>"; };
+		B2777F742861EF9E00F8C892 /* BoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewModel.swift; sourceTree = "<group>"; };
 		B2A63D2F2861BD1400E89594 /* MySportPerformance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySportPerformance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2A63D322861BD1400E89594 /* MySportPerformanceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySportPerformanceApp.swift; sourceTree = "<group>"; };
 		B2A63D362861BD1800E89594 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -30,6 +34,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B2777F722861EF7100F8C892 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				B2777F6F2861EEE700F8C892 /* SportActivityModel.xcdatamodeld */,
+			);
+			path = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		B2777F732861EF8300F8C892 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B2777F742861EF9E00F8C892 /* BoardViewModel.swift */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 		B2A63D262861BD1400E89594 = {
 			isa = PBXGroup;
 			children = (
@@ -51,6 +71,8 @@
 			children = (
 				B2A63D322861BD1400E89594 /* MySportPerformanceApp.swift */,
 				B2A63D462861BDAE00E89594 /* View */,
+				B2777F732861EF8300F8C892 /* ViewModel */,
+				B2777F722861EF7100F8C892 /* CoreDataModel */,
 				B2A63D452861BD9200E89594 /* Resources */,
 			);
 			path = MySportPerformance;
@@ -67,7 +89,7 @@
 		B2A63D462861BDAE00E89594 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B2777F4C2861EDD900F8C892 /* ContentView.swift */,
+				B2777F4C2861EDD900F8C892 /* BoardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -141,7 +163,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2777F4D2861EDD900F8C892 /* ContentView.swift in Sources */,
+				B2777F712861EEE700F8C892 /* SportActivityModel.xcdatamodeld in Sources */,
+				B2777F752861EF9E00F8C892 /* BoardViewModel.swift in Sources */,
+				B2777F4D2861EDD900F8C892 /* BoardView.swift in Sources */,
 				B2A63D332861BD1400E89594 /* MySportPerformanceApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,6 +367,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B2777F6F2861EEE700F8C892 /* SportActivityModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B2777F702861EEE700F8C892 /* SportActivityModel.xcdatamodel */,
+			);
+			currentVersion = B2777F702861EEE700F8C892 /* SportActivityModel.xcdatamodel */;
+			path = SportActivityModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B2A63D272861BD1400E89594 /* Project object */;
 }
