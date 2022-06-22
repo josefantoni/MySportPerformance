@@ -13,8 +13,8 @@ class Helper {
         let (min, secf) = modf(60 * minf)
         let sec = (60 * secf)
         var output = ""
-        if !hr.isZero { output += "\(hr)h" }
-        if !min.isZero { output += "\(min)m" }
+        if !hr.isZero { output += "\(hr.clean)h" }
+        if !min.isZero { output += "\(min.clean)m" }
         if !sec.isZero { output += "\(sec.clean)s" }
         return output
     }

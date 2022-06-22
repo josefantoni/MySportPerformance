@@ -111,12 +111,9 @@ struct CreateNewActivityView: View {
             isAlertShown.toggle()
             return
         }
-        if isPrefferedToBeLocallySaved {
-            boardViewModel.addSportActivity(name: activityName,
-                                            duration: duration)
-        } else {
-            fatalError("Yet to be implented!")
-        }
+        boardViewModel.addSportActivity(name: activityName,
+                                        duration: duration,
+                                        isLocalType: isPrefferedToBeLocallySaved)
         dismiss()
     }
 }

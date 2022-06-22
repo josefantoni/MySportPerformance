@@ -31,7 +31,7 @@ struct BoardsView: View {
         List {
             ForEach(boardViewModel.storedSportActivities) { item in
                 NavigationLink {
-                    Text("Item at \(item.name ?? "?")")
+                    SportActivityDetailView(sportActivity: item)
                 } label: {
                     ActivityTableCell(localActivity: item)
                 }
