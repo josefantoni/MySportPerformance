@@ -33,11 +33,14 @@ struct BoardsView: View {
                 NavigationLink {
                     Text("Item at \(item.name ?? "?")")
                 } label: {
-                    Text(item.name ?? "")
+                    ActivityTableCell(localActivity: item)
                 }
+                .listRowBackground(Color.blue)
+                .foregroundColor(.white)
             }
             .onDelete(perform: boardViewModel.removeSportActivity)
         }
+        .listStyle(InsetGroupedListStyle())
     }
     
     var addButton: some View {
@@ -46,7 +49,8 @@ struct BoardsView: View {
         }, label: {
             Image(systemName: "plus")
                 .foregroundColor(.white)
-                .frame(minWidth: 0, maxWidth: .infinity)
+                .frame(minWidth: 0,
+                       maxWidth: .infinity)
         })
         .background(Color.purple)
         .cornerRadius(20)
@@ -60,7 +64,8 @@ struct BoardsView: View {
         }, label: {
             Image(systemName: "slider.horizontal.3")
                 .foregroundColor(.white)
-                .frame(minWidth: 0, maxWidth: .infinity)
+                .frame(minWidth: 0,
+                       maxWidth: .infinity)
         }).background(Color.purple)
             .cornerRadius(20)
             .buttonStyle(.bordered)

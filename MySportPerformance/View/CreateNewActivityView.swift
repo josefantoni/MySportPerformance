@@ -13,6 +13,11 @@ struct CreateNewActivityView: View {
     @ObservedObject private var boardViewModel: BoardViewModel
     
     @State var activityName: String = ""
+    @State var activityHours: String = ""
+    @State var activityMinutes: String = ""
+    @State var activitySeconds: String = ""
+
+    @State var errorTitle: [String] = []
     @State var isAlertShown: Bool = false
     @State var isPrefferedToBeLocallySaved: Bool = true
     
@@ -23,9 +28,14 @@ struct CreateNewActivityView: View {
     var body: some View {
         NavigationView {
             VStack {
-                content
-                proceedButton
+                TextField("Enter sport activity", text: $activityName)
+                    .textFieldStyle(TimeTextFieldStyle())
+
+                timeView
+                remoteTypeView
+                
                 Spacer()
+                proceedButton
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("New sport activity")
@@ -39,27 +49,28 @@ struct CreateNewActivityView: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
-    var content: some View {
-        VStack {
-            TextField("Enter sport activity", text: $activityName)
-                .padding()
-                .overlay( RoundedRectangle(cornerRadius: 16).stroke(.purple, lineWidth: 2))
-            
-            HStack {
-                Toggle("LOCAL", isOn: $isPrefferedToBeLocallySaved)
-                    .toggleStyle(CheckToggleStyle())
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .overlay( RoundedRectangle(cornerRadius: 16).stroke(.purple, lineWidth: 2))
-                let negate = Binding<Bool>(
-                    get: { !$isPrefferedToBeLocallySaved.wrappedValue },
-                    set: { $isPrefferedToBeLocallySaved.wrappedValue = !$0 }
-                )
+    var timeView: some View {
+        HStack {
+            TextField("Hours", text: $activityHours)
+                .textFieldStyle(TimeTextFieldStyle(keyboardType: .decimalPad))
+            TextField("Minutes", text: $activityMinutes)
+                .textFieldStyle(TimeTextFieldStyle(keyboardType: .decimalPad))
+            TextField("Seconds", text: $activitySeconds)
+                .textFieldStyle(TimeTextFieldStyle(keyboardType: .decimalPad))
+        }
+    }
+    
+    var remoteTypeView: some View {
+        HStack {
+            Toggle("LOCAL", isOn: $isPrefferedToBeLocallySaved)
+                .toggleStyle(CheckToggleStyle(color: .blue))
+            let negate = Binding<Bool>(
+                get: { !$isPrefferedToBeLocallySaved.wrappedValue },
+                set: { $isPrefferedToBeLocallySaved.wrappedValue = !$0 }
+            )
 
-                Toggle("REMOTE", isOn: negate)
-                    .toggleStyle(CheckToggleStyle())
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .overlay( RoundedRectangle(cornerRadius: 16).stroke(.purple, lineWidth: 2))
-            }
+            Toggle("REMOTE", isOn: negate)
+                .toggleStyle(CheckToggleStyle(color: .green))
         }
     }
     
@@ -77,25 +88,32 @@ struct CreateNewActivityView: View {
     var proceedButton: some View {
         Button(action: proceedButtonAction, label: {
             Text("Save")
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .padding()
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 40)
+                .padding([.vertical, .horizontal], 8)
                 .background(.purple)
                 .foregroundColor(.white)
                 .cornerRadius(20)
         })
-        .alert("Empty sport activity cannot be saved!",
+        .alert(errorTitle.joined(separator: "\n"),
                isPresented: $isAlertShown) {
             Button("OK", role: .cancel) { }
         }
     }
     
     func proceedButtonAction() {
-        guard !self.activityName.isEmpty else {
+        let duration = Helper.calcSecondsFromString(h: activityHours,
+                                                    m: activityMinutes,
+                                                    s: activitySeconds)
+        guard !self.activityName.isEmpty && !duration.isZero else {
+            errorTitle = []
+            if activityName.isEmpty { errorTitle.append("Empty sport activity name") }
+            if duration.isZero { errorTitle.append("Empty duration") }
             isAlertShown.toggle()
             return
         }
         if isPrefferedToBeLocallySaved {
-            boardViewModel.addSportActivity(name: activityName)
+            boardViewModel.addSportActivity(name: activityName,
+                                            duration: duration)
         } else {
             fatalError("Yet to be implented!")
         }

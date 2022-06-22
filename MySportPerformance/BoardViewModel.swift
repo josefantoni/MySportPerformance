@@ -33,15 +33,17 @@ final class BoardViewModel: ObservableObject {
         do {
             storedSportActivities = try container.viewContext.fetch(request)
         } catch let error {
-            print("Something went wrong while fetching sport activities: \(error)")
+            fatalError("Something went wrong while fetching sport activities: \(error)")
         }
     }
 
-    func addSportActivity(name: String) {
+    func addSportActivity(name: String,
+                          duration: Double) {
         let activity = SportActivityEntity(context: container.viewContext)
         activity.id = UUID()
         activity.created = Date()
         activity.name = name
+        activity.duration = duration
         storedSportActivities.append(activity)
         saveToDb()
     }
@@ -60,7 +62,7 @@ final class BoardViewModel: ObservableObject {
             try container.viewContext.save()
             print("Save was sucessfull")
         } catch let error {
-            print("Something went wrong white saving to DB:  \(error)")
+            fatalError("Something went wrong white saving to DB:  \(error)")
         }
     }
 }
