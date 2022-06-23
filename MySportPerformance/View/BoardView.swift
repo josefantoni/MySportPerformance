@@ -78,7 +78,7 @@ struct BoardsView: View {
     @ViewBuilder
     func listRow(title: String, subtitle: String) -> some View {
         HStack {
-            Text("\(title): \(subtitle))")
+            Text("\(title): \(subtitle)")
                 .font(.subheadline)
         }
         .padding(.horizontal, 8)

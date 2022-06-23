@@ -41,8 +41,7 @@ final class FirebaseService: FirebaseServiceProtocol {
                     "id": sportActivity.id.description,
                     "created": sportActivity.created,
                     "name": sportActivity.name,
-                    "duration": sportActivity.duration,
-                    "isLocalObject": false // rework
+                    "duration": sportActivity.duration
                 ]) { err in
                     if let err = err {
                         return promise(.failure(err))
