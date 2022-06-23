@@ -52,7 +52,7 @@ struct SportActivityDetailView: View {
             Text(title)
             Spacer()
             Text(subtitle)
-                .frame(alignment: .trailing)
+                .multilineTextAlignment(.trailing)
         }
         .font(.subheadline)
         .listRowBackground(sportActivity.isLocalObject ? Color.blue : Color.green)
