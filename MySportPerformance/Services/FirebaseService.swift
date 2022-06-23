@@ -12,23 +12,21 @@ import FirebaseFirestore
 
 protocol FirebaseServiceProtocol {
     func fetchRemoteActivities() -> AnyPublisher<[SportActivity], Error>
-    func addRemoteSportActivity(name: String,
-                                duration: Double) -> AnyPublisher<Never, Error>
+    func addRemoteSportActivity(sportActivity: SportActivity) -> AnyPublisher<Never, Error>
+    func removeRemoteSportActivity(documentId: String) -> AnyPublisher<Never, Error>
 }
 
 final class FirebaseService: FirebaseServiceProtocol {
-    // Remote storage
-    private let sportActivityRemoteModel = "SportActivityRemoteModel"
-
     func fetchRemoteActivities() -> AnyPublisher<[SportActivity], Error> {
         return Future<[SportActivity], Error> { promise in
-            Firestore.firestore().collection(self.sportActivityRemoteModel)
+            Firestore.firestore().collection(PersistentStore.retrieveAppUUID())
                 .getDocuments { querySnapshot, error in
                 if let err = error {
                     return promise(.failure(err))
                 } else if let documents = querySnapshot?.documents {
                     let fetchedActivities: [SportActivity]  = documents.map { documentSnapshot in
-                        try! SportActivity(dictionary: documentSnapshot.data())
+                        // TODO: cleaner solution
+                        try! SportActivity(document: documentSnapshot)
                     }
                     return promise(.success(fetchedActivities))
                 }
@@ -36,21 +34,33 @@ final class FirebaseService: FirebaseServiceProtocol {
         }.eraseToAnyPublisher()
     }
     
-    func addRemoteSportActivity(name: String,
-                                duration: Double) -> AnyPublisher<Never, Error> {
+    func addRemoteSportActivity(sportActivity: SportActivity) -> AnyPublisher<Never, Error> {
         return Future<Never, Error> { promise in
-            Firestore.firestore().collection(self.sportActivityRemoteModel)
+            Firestore.firestore().collection(PersistentStore.retrieveAppUUID())
                 .addDocument(data: [
-                    "id": UUID().description,
-                    "created": Date().timeIntervalSince1970,
-                    "name": name,
-                    "duration": duration,
+                    "id": sportActivity.id.description,
+                    "created": sportActivity.created,
+                    "name": sportActivity.name,
+                    "duration": sportActivity.duration,
+                    "isLocalObject": false // rework
                 ]) { err in
                     if let err = err {
                         return promise(.failure(err))
-                    } 
+                    }
                 }
         }.eraseToAnyPublisher()
-        
+    }
+    
+    func removeRemoteSportActivity(documentId: String) -> AnyPublisher<Never, Error> {
+        return Future<Never, Error> { promise in
+            Firestore.firestore().collection(PersistentStore.retrieveAppUUID())
+                .document(documentId).delete() { err in
+                    if let err = err {
+                        print("Error removing document: \(err)")
+                    } else {
+                        print("Document successfully removed!")
+                    }
+                }
+        }.eraseToAnyPublisher()
     }
 }

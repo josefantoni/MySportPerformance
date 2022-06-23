@@ -7,6 +7,12 @@
 import SwiftUI
 import CoreData
 
+enum eSportActivityType: Hashable {
+    case all
+    case local
+    case remote
+}
+
 struct BoardsView: View {
     @StateObject private var boardViewModel: BoardViewModel = BoardViewModel()
     @State private var isSheetPresented = false
@@ -14,6 +20,7 @@ struct BoardsView: View {
     var body: some View {
         NavigationView {
             VStack {
+                segmentView
                 tableView
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -27,15 +34,25 @@ struct BoardsView: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
+    var segmentView: some View {
+        Picker("", selection: $boardViewModel.sportActivityType) {
+            Text("All").tag(eSportActivityType.all)
+            Text("Local").tag(eSportActivityType.local)
+            Text("Remote").tag(eSportActivityType.remote)
+        }
+        .pickerStyle(.segmented)
+    }
+    
     var tableView: some View {
         List {
-            ForEach(boardViewModel.storedSportActivities) { item in
+            ForEach(boardViewModel.filteredSportActivities, id: \.id) { sportActivity in
                 NavigationLink {
-                    SportActivityDetailView(sportActivity: item)
+                    SportActivityDetailView(sportActivity: sportActivity)
                 } label: {
-                    ActivityTableCell(localActivity: item)
+                    listRow(title: sportActivity.name,
+                            subtitle: Helper.formatDuration(from: sportActivity.duration))
                 }
-                .listRowBackground(Color.blue)
+                .listRowBackground(sportActivity.isLocalObject ? Color.blue : Color.green)
                 .foregroundColor(.white)
             }
             .onDelete(perform: boardViewModel.removeSportActivity)
@@ -57,18 +74,15 @@ struct BoardsView: View {
         .buttonStyle(.bordered)
         .sheet(isPresented: $isSheetPresented) { CreateNewActivityView(viewModel: boardViewModel) }
     }
-    
-    var preferencesButton: some View {
-        Button(action: {
-            
-        }, label: {
-            Image(systemName: "slider.horizontal.3")
-                .foregroundColor(.white)
-                .frame(minWidth: 0,
-                       maxWidth: .infinity)
-        }).background(Color.purple)
-            .cornerRadius(20)
-            .buttonStyle(.bordered)
+        
+    @ViewBuilder
+    func listRow(title: String, subtitle: String) -> some View {
+        HStack {
+            Text("\(title): \(subtitle))")
+                .font(.subheadline)
+        }
+        .padding(.horizontal, 8)
+        .frame(minHeight: 50, maxHeight: .infinity)
     }
 }
 

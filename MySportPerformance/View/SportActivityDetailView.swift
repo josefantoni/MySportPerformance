@@ -9,19 +9,28 @@ import SwiftUI
 
 struct SportActivityDetailView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
-    var sportActivity: SportActivityEntity
-
+    
+    var sportActivity: SportActivity
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                
-            }
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationViewStyle(StackNavigationViewStyle())
+        tableView
+        .navigationBarTitle(Text(sportActivity.name), displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton)
+    }
+    
+    var tableView: some View {
+        List {
+            listRow(title: "Activity name:",
+                    subtitle: sportActivity.name)
+            listRow(title: "Duration:",
+                    subtitle: Helper.formatDuration(from: sportActivity.duration))
+            listRow(title: "Created:",
+                    subtitle: sportActivity.created.formatDate)
+            listRow(title: "Stored:",
+                    subtitle: sportActivity.isLocalObject ? "LOCAL" : "REMOTE")
+        }
+        .listStyle(InsetGroupedListStyle())
     }
     
     var backButton: some View {
@@ -33,5 +42,16 @@ struct SportActivityDetailView: View {
         .background(.purple)
         .cornerRadius(20)
         .buttonStyle(.bordered)
+    }
+    
+    @ViewBuilder
+    func listRow(title: String, subtitle: String) -> some View {
+        HStack {
+            Text(title)
+            Spacer()
+            Text(subtitle)
+        }
+        .listRowBackground(sportActivity.isLocalObject ? Color.blue : Color.green)
+        .foregroundColor(.white)
     }
 }

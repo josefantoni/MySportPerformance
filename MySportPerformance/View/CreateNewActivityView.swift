@@ -27,19 +27,19 @@ struct CreateNewActivityView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            ScrollView {
                 TextField("Enter sport activity", text: $activityName)
                     .textFieldStyle(TimeTextFieldStyle())
-
                 timeView
                 remoteTypeView
                 
                 Spacer()
                 proceedButton
             }
+            .frame(minHeight: 0, maxHeight: .infinity)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("New sport activity")
-            .padding(.horizontal, 8)
+            .padding([.vertical, .horizontal], 8)
             .toolbar {
                 ToolbarItem {
                     dismissButton

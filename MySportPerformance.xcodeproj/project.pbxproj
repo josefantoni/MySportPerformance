@@ -14,13 +14,13 @@
 		B2777F7928626E9800F8C892 /* CheckToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2777F7828626E9800F8C892 /* CheckToggleStyle.swift */; };
 		B2777F7E2863053500F8C892 /* TimeTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2777F7D2863053500F8C892 /* TimeTextFieldStyle.swift */; };
 		B2777F8128631EEF00F8C892 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2777F8028631EEF00F8C892 /* Helper.swift */; };
-		B2777F872863205400F8C892 /* ActivityTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2777F862863205400F8C892 /* ActivityTableCell.swift */; };
 		B2777F8A28632DC600F8C892 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2777F8928632DC600F8C892 /* Double+Extension.swift */; };
 		B2777F8C2863302E00F8C892 /* SportActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2777F8B2863302E00F8C892 /* SportActivityDetailView.swift */; };
 		B2777F932863413800F8C892 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2777F922863413800F8C892 /* GoogleService-Info.plist */; };
 		B2777FA02863782000F8C892 /* SportActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2777F9F2863782000F8C892 /* SportActivity.swift */; };
 		B2777FA32863785800F8C892 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2777FA22863785800F8C892 /* FirebaseService.swift */; };
 		B2777FA628637D5200F8C892 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B2777FA528637D5200F8C892 /* FirebaseFirestoreSwift */; };
+		B2777FA92863A00E00F8C892 /* PersistentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2777FA82863A00E00F8C892 /* PersistentStore.swift */; };
 		B2A63D332861BD1400E89594 /* MySportPerformanceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2A63D322861BD1400E89594 /* MySportPerformanceApp.swift */; };
 		B2A63D372861BD1800E89594 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2A63D362861BD1800E89594 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -33,12 +33,12 @@
 		B2777F7828626E9800F8C892 /* CheckToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckToggleStyle.swift; sourceTree = "<group>"; };
 		B2777F7D2863053500F8C892 /* TimeTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTextFieldStyle.swift; sourceTree = "<group>"; };
 		B2777F8028631EEF00F8C892 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		B2777F862863205400F8C892 /* ActivityTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableCell.swift; sourceTree = "<group>"; };
 		B2777F8928632DC600F8C892 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		B2777F8B2863302E00F8C892 /* SportActivityDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportActivityDetailView.swift; sourceTree = "<group>"; };
 		B2777F922863413800F8C892 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B2777F9F2863782000F8C892 /* SportActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportActivity.swift; sourceTree = "<group>"; };
 		B2777FA22863785800F8C892 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		B2777FA82863A00E00F8C892 /* PersistentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStore.swift; sourceTree = "<group>"; };
 		B2A63D2F2861BD1400E89594 /* MySportPerformance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySportPerformance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2A63D322861BD1400E89594 /* MySportPerformanceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySportPerformanceApp.swift; sourceTree = "<group>"; };
 		B2A63D362861BD1800E89594 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -81,14 +81,6 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
-		B2777F852863204300F8C892 /* ListCell */ = {
-			isa = PBXGroup;
-			children = (
-				B2777F862863205400F8C892 /* ActivityTableCell.swift */,
-			);
-			path = ListCell;
-			sourceTree = "<group>";
-		};
 		B2777F8828632DB900F8C892 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				B2777F8028631EEF00F8C892 /* Helper.swift */,
+				B2777FA82863A00E00F8C892 /* PersistentStore.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -168,7 +161,6 @@
 				B2777F4C2861EDD900F8C892 /* BoardView.swift */,
 				B2777F7628620A7900F8C892 /* CreateNewActivityView.swift */,
 				B2777F8B2863302E00F8C892 /* SportActivityDetailView.swift */,
-				B2777F852863204300F8C892 /* ListCell */,
 				B2777F7C2863052100F8C892 /* Styles */,
 			);
 			path = View;
@@ -251,7 +243,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2777F8128631EEF00F8C892 /* Helper.swift in Sources */,
-				B2777F872863205400F8C892 /* ActivityTableCell.swift in Sources */,
 				B2777F8A28632DC600F8C892 /* Double+Extension.swift in Sources */,
 				B2777FA02863782000F8C892 /* SportActivity.swift in Sources */,
 				B2777F712861EEE700F8C892 /* SportActivityModel.xcdatamodeld in Sources */,
@@ -262,6 +253,7 @@
 				B2777F8C2863302E00F8C892 /* SportActivityDetailView.swift in Sources */,
 				B2777F7728620A7900F8C892 /* CreateNewActivityView.swift in Sources */,
 				B2777F7928626E9800F8C892 /* CheckToggleStyle.swift in Sources */,
+				B2777FA92863A00E00F8C892 /* PersistentStore.swift in Sources */,
 				B2A63D332861BD1400E89594 /* MySportPerformanceApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
