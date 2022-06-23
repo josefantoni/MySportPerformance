@@ -23,6 +23,8 @@ struct SportActivityDetailView: View {
         List {
             listRow(title: "Activity name:",
                     subtitle: sportActivity.name)
+            listRow(title: "Place:",
+                    subtitle: sportActivity.place)
             listRow(title: "Duration:",
                     subtitle: Helper.formatDuration(from: sportActivity.duration))
             listRow(title: "Created:",
@@ -50,7 +52,9 @@ struct SportActivityDetailView: View {
             Text(title)
             Spacer()
             Text(subtitle)
+                .frame(alignment: .trailing)
         }
+        .font(.subheadline)
         .listRowBackground(sportActivity.isLocalObject ? Color.blue : Color.green)
         .foregroundColor(.white)
     }

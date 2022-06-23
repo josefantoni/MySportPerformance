@@ -13,6 +13,7 @@ struct CreateNewActivityView: View {
     @ObservedObject private var boardViewModel: BoardViewModel
     
     @State var activityName: String = ""
+    @State var activityPlace: String = ""
     @State var activityHours: String = ""
     @State var activityMinutes: String = ""
     @State var activitySeconds: String = ""
@@ -30,6 +31,9 @@ struct CreateNewActivityView: View {
             ScrollView {
                 TextField("Enter sport activity", text: $activityName)
                     .textFieldStyle(TimeTextFieldStyle())
+                TextField("Enter place of occurence", text: $activityPlace)
+                    .textFieldStyle(TimeTextFieldStyle())
+
                 timeView
                 remoteTypeView
                 
@@ -104,14 +108,16 @@ struct CreateNewActivityView: View {
         let duration = Helper.calcSecondsFromString(h: activityHours,
                                                     m: activityMinutes,
                                                     s: activitySeconds)
-        guard !self.activityName.isEmpty && !duration.isZero else {
+        guard !self.activityName.isEmpty && !self.activityPlace.isEmpty && !duration.isZero else {
             errorTitle = []
             if activityName.isEmpty { errorTitle.append("Empty sport activity name") }
+            if activityPlace.isEmpty { errorTitle.append("Empty place of occurence") }
             if duration.isZero { errorTitle.append("Empty duration") }
             isAlertShown.toggle()
             return
         }
         boardViewModel.addSportActivity(name: activityName,
+                                        place: activityPlace,
                                         duration: duration,
                                         isLocalType: isPrefferedToBeLocallySaved)
         dismiss()

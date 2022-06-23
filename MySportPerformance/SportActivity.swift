@@ -11,6 +11,7 @@ import FirebaseFirestore
 struct SportActivity: Codable {
     let id: UUID
     let name: String
+    let place: String
     let created: Double
     let duration: Double
     var documentId: String?
@@ -26,10 +27,12 @@ struct SportActivity: Codable {
 
     init(id: UUID,
          name: String,
+         place: String,
          created: Double,
          duration: Double) {
         self.id = id
         self.name = name
+        self.place = place
         self.created = created
         self.duration = duration
     }
@@ -37,6 +40,7 @@ struct SportActivity: Codable {
     init(entity: SportActivityEntity) {
         self.id = entity.id ?? UUID()
         self.name = entity.name ?? "?"
+        self.place = entity.place ?? "?"
         self.created = entity.created
         self.duration = entity.duration
     }

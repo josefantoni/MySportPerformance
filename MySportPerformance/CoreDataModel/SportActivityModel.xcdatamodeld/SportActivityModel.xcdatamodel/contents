@@ -5,8 +5,9 @@
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="place" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="SportActivityEntity" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="SportActivityEntity" positionX="-63" positionY="-18" width="128" height="104"/>
     </elements>
 </model>

@@ -39,6 +39,7 @@ final class FirebaseService: FirebaseServiceProtocol {
             Firestore.firestore().collection(PersistentStore.retrieveAppUUID())
                 .addDocument(data: [
                     "id": sportActivity.id.description,
+                    "place": sportActivity.place,
                     "created": sportActivity.created,
                     "name": sportActivity.name,
                     "duration": sportActivity.duration

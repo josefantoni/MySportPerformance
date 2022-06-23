@@ -54,12 +54,14 @@ final class BoardViewModel: ObservableObject {
     }
 
     func addSportActivity(name: String,
+                          place: String,
                           duration: Double,
                           isLocalType: Bool) {
         var sportActivity = SportActivity(id: UUID(),
-                                     name: name,
-                                     created: Date().timeIntervalSince1970,
-                                     duration: duration)
+                                          name: name,
+                                          place: place,
+                                          created: Date().timeIntervalSince1970,
+                                          duration: duration)
         if isLocalType {
             addLocalSportActivity(sportActivity: sportActivity)
         } else {
@@ -74,6 +76,7 @@ final class BoardViewModel: ObservableObject {
         let entity = SportActivityEntity(context: container.viewContext)
         entity.id = sportActivity.id
         entity.created = sportActivity.created
+        entity.place = sportActivity.place
         entity.name = sportActivity.name
         entity.duration = sportActivity.duration
         saveToDb()
