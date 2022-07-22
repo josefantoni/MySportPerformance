@@ -56,11 +56,11 @@ struct CreateNewActivityView: View {
     var timeView: some View {
         HStack {
             TextField("Hours", text: $activityHours)
-                .textFieldStyle(TimeTextFieldStyle(keyboardType: .decimalPad))
+                .textFieldStyle(TimeTextFieldStyle(keyboardType: .numberPad))
             TextField("Minutes", text: $activityMinutes)
-                .textFieldStyle(TimeTextFieldStyle(keyboardType: .decimalPad))
+                .textFieldStyle(TimeTextFieldStyle(keyboardType: .numberPad))
             TextField("Seconds", text: $activitySeconds)
-                .textFieldStyle(TimeTextFieldStyle(keyboardType: .decimalPad))
+                .textFieldStyle(TimeTextFieldStyle(keyboardType: .numberPad))
         }
     }
     
